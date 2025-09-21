@@ -1,5 +1,6 @@
 import React from "react";
 import Synonyms from "./Synonyms";
+import "./Results.css";
 
 export default function Results({ results }) {
   
@@ -14,7 +15,7 @@ export default function Results({ results }) {
       {entry.phonetics?.map((phonetic, index) =>
         phonetic.text ? (
           <p key={index}>
-            <em>{phonetic.text}</em>
+            {phonetic.text}
             {phonetic.audio && (
               <a href={phonetic.audio} target="_blank" rel="noreferrer"> 🔊 </a>
             )}
@@ -23,11 +24,11 @@ export default function Results({ results }) {
       )}
 
       {entry.meanings?.map((meaning, mIdx) => (
-        <div key={mIdx}>
+        <section key={mIdx}>
           <h3>{meaning.partOfSpeech}</h3>
 
           {meaning.definitions?.map((definition, dIdx) => (
-            <div key={dIdx}>
+            <section key={dIdx}>
               <p>{definition.definition}</p>
               {definition.example && (
                 <p>
@@ -38,12 +39,12 @@ export default function Results({ results }) {
 
               {/* definition-level synonyms */}
               <Synonyms synonyms={definition.synonyms} />
-            </div>
+            </section>
           ))}
 
           {/* meaning-level synonyms once per meaning */}
           <Synonyms synonyms={meaning.synonyms} />
-        </div>
+        </section>
       ))}
     </div>
   );

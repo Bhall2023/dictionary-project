@@ -1,9 +1,10 @@
-.Dictionary {
-  margin-top: 10px;
+.Dictionary section {
+  
   background-color: blueviolet;
   padding: 10px;
     border-radius: 10px;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 
 }
