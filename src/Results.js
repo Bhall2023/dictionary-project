@@ -25,25 +25,30 @@ export default function Results({ results }) {
 
       {entry.meanings?.map((meaning, mIdx) => (
         <section key={mIdx}>
+            
           <h3>{meaning.partOfSpeech}</h3>
 
           {meaning.definitions?.map((definition, dIdx) => (
-            <section key={dIdx}>
+            <div key={dIdx}>
               <p>{definition.definition}</p>
               {definition.example && (
                 <p>
                   <strong>Example: </strong>
                   {definition.example}
                 </p>
+               
               )}
-
-              {/* definition-level synonyms */}
-              <Synonyms synonyms={definition.synonyms} />
-            </section>
+              {definition.synonyms && definition.synonyms.length > 0 && (
+                <Synonyms synonyms={definition.synonyms} />
+              )}
+            </div>
           ))}
 
-          {/* meaning-level synonyms once per meaning */}
-          <Synonyms synonyms={meaning.synonyms} />
+          {/* Render meaning-level synonyms only if there are no definition-level synonyms */}
+          {(!meaning.definitions || meaning.definitions.every(def => !def.synonyms || def.synonyms.length === 0)) && (
+            /* meaning-level synonyms once per meaning */
+            <Synonyms synonyms={meaning.synonyms} />
+          )}
         </section>
       ))}
     </div>

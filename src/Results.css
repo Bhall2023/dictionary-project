@@ -4,3 +4,13 @@
   line-height: 1.5;
   font-weight: bold;
 }   
+
+.Results .phonetics {
+  font-size: 18px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.Results .definition {
+  margin-bottom: 15px;
+}   
