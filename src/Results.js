@@ -14,7 +14,7 @@ export default function Results({ results }) {
 
       {entry.phonetics?.map((phonetic, index) =>
         phonetic.text ? (
-          <p key={index}>
+          <p className="phonetics" key={index}>
             {phonetic.text}
             {phonetic.audio && (
               <a href={phonetic.audio} target="_blank" rel="noreferrer"> 🔊 </a>
@@ -39,7 +39,10 @@ export default function Results({ results }) {
                
               )}
               {definition.synonyms && definition.synonyms.length > 0 && (
-                <Synonyms synonyms={definition.synonyms} />
+
+                <div className="key">
+                  <Synonyms synonyms={definition.synonyms} />
+                </div>
               )}
             </div>
           ))}
@@ -47,7 +50,9 @@ export default function Results({ results }) {
           {/* Render meaning-level synonyms only if there are no definition-level synonyms */}
           {(!meaning.definitions || meaning.definitions.every(def => !def.synonyms || def.synonyms.length === 0)) && (
             /* meaning-level synonyms once per meaning */
+            <div className="key">
             <Synonyms synonyms={meaning.synonyms} />
+            </div>
           )}
         </section>
       ))}

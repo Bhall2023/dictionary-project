@@ -7,10 +7,37 @@
 
 .Results .phonetics {
   font-size: 18px;
-  color: gray;
+  color: black;
   margin-bottom: 20px;
 }
 
-.Results .definition {
-  margin-bottom: 15px;
-}   
+.Results .key {
+  margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.Results .meanings {
+  margin-top: 20px;
+}
+
+/* Make the synonyms list transparent and inline chips instead of a fat bar */
+.Results .synonyms {
+  background: transparent !important;
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.Results .synonyms li {
+  display: inline-block;          /* don't stretch full width */
+  background: black;
+  color: #fff;                    /* adjust for your purple card */
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  border: 0;
+  margin: 0;
+}
