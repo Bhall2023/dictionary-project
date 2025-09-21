@@ -11,10 +11,11 @@ export default function App() {
         <img src={logo} alt="logo" className="App-logo img-fluid" />
       </header>
       <main>
-        <Dictionary />
+        <Dictionary defaultKeyword="sunrise" />
       </main>
       <footer className="App-footer">
-        <small>Coded by Bonnie Hall</small>
+        <small>This project was coded by <a href = "https://www.shecodes.io/graduates/162107-bonnie-hall" target="_blank" rel="noopener noreferrer">Bonnie Hall</a> and is open-sourced on {" "}
+  <a href = "https://github.com/Bhall2023/dictionary-project" target="_blank" rel="noopener noreferrer">GitHub</a></small>
       </footer>
       </div>
     </div>
