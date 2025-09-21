@@ -2,19 +2,31 @@ import React from "react";
 import Synonyms from "./Synonyms";
 
 export default function Results({ results }) {
-  if (!results || (Array.isArray(results) && results.length === 0)) {
-    return <div className="Results">This is where the definition will appear.</div>;
-  }
+  
+  const entry = Array.isArray(results) ? results[0] : results;
+
+  if (!entry) return null;
 
   return (
     <div className="Results">
-      <h2>{results.word}</h2>
+      <h2>{entry.word}</h2>
 
-      {results.meanings.map((meaning, mIdx) => (
+      {entry.phonetics?.map((phonetic, index) =>
+        phonetic.text ? (
+          <p key={index}>
+            <em>{phonetic.text}</em>
+            {phonetic.audio && (
+              <a href={phonetic.audio} target="_blank" rel="noreferrer"> 🔊 </a>
+            )}
+          </p>
+        ) : null    
+      )}
+
+      {entry.meanings?.map((meaning, mIdx) => (
         <div key={mIdx}>
           <h3>{meaning.partOfSpeech}</h3>
 
-          {meaning.definitions.map((definition, dIdx) => (
+          {meaning.definitions?.map((definition, dIdx) => (
             <div key={dIdx}>
               <p>{definition.definition}</p>
               {definition.example && (
@@ -24,12 +36,12 @@ export default function Results({ results }) {
                 </p>
               )}
 
-              {/* Only show definition-level synonyms here */}
+              {/* definition-level synonyms */}
               <Synonyms synonyms={definition.synonyms} />
             </div>
           ))}
 
-          {/* Show meaning-level synonyms once per meaning */}
+          {/* meaning-level synonyms once per meaning */}
           <Synonyms synonyms={meaning.synonyms} />
         </div>
       ))}
